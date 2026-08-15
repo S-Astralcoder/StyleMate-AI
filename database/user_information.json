@@ -1,0 +1,79 @@
+{
+    "name" : "Suraj",
+    "gender" : "male",
+    "preference" : {
+        "like" : {
+            "color" : ["black", "white", "navy blue", "blue"],
+            "color_type" : "dark color",
+            "style" : "formal"
+        },
+        "dislike": {
+            "color" : ["pink", "red", "green"],
+            "color_type" : null,
+            "style" : "traditional"
+        }
+    },
+    "closet" : [
+        {
+            "type" : "formal shirt",
+            "color" : "black"
+        },
+        {
+            "type" : "formal shirt",
+            "color" : "white"
+        },
+        {
+            "type" : "formal shirt",
+            "color" : "blue"
+        },
+        {
+            "type" : "formal shirt",
+            "color" : "navy blue"
+        },
+        {
+            "type" : "T shirt",
+            "color" : "black"
+        },
+        {
+            "type" : "T shirt",
+            "color" : "white"
+        },
+        {
+            "type" : "T shirt",
+            "color" : "navy blue"
+        },
+        {
+            "type" : "T shirt",
+            "color" : "orange"
+        },
+        {
+            "type" : "formal pant",
+            "color" : "black"
+        },
+        {
+            "type" : "formal pant",
+            "color" : "white"
+        },
+        {
+            "type" : "formal pant",
+            "color" : "gray white"
+        },
+        {
+            "type" : "jeans pant",
+            "color" : "blue"
+        },
+        {
+            "type" : "jeans pant",
+            "color" : "black"
+        },
+        {
+            "type" : "jeans pant",
+            "color" : "gray"
+        },
+        {
+            "type" : "jeans pant",
+            "color" : "navy blue"
+        }
+
+    ]
+}
