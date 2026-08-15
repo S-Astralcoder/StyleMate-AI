@@ -1,8 +1,9 @@
+import warnings
 from src.agent import Agent
 from src.functions import AgentFunction, AgentFunctionBook
 from src.goal import Goal, GoalBook
 from src.memory import AgentMemory
-from src.tool.tool import get_user_data
+from src.tool.tool import add_discovered_preference, get_all_discovered_preferences, get_user_data
 from src.tools import Tool
 from dotenv import load_dotenv
 from rich.prompt import Prompt
@@ -12,6 +13,7 @@ from rich import print
 from src.tools import ToolBook
 load_dotenv()
 
+warnings.filterwarnings("ignore", category=UserWarning, module="pydantic")
 
 
 agent = Agent(
@@ -42,10 +44,32 @@ agent = Agent(
         Tool(
             name="get_user_data", 
             description="Function used to get user information. which includes users style preferences",
-            parameters={})
+            parameters={}),
+        Tool(name="add_discovered_preference",
+        description="used to add new discovered preferences from the user",
+        parameters={
+            "type" : "object",
+            "properties" : {
+                "title" : {
+                "type" : "string",
+                "description" : "title for the new discovery"
+                },
+                "info" : {
+                    "type" : "string",
+                    "description" : "information about the discovery"
+                }
+            }
+        }),
+        Tool(
+            name="get_all_discovered_preferences",
+            description="you to get all the information about new discovery made during interaction",
+            parameters={}
+        )
     ]),
     agent_function_book=AgentFunctionBook([
-        AgentFunction(name="get_user_data", function=get_user_data)
+        AgentFunction(name="get_user_data", function=get_user_data),
+        AgentFunction(name="add_discovered_preference", function=add_discovered_preference),
+        AgentFunction(name="get_all_discovered_preference", function=get_all_discovered_preferences),
     ]),
     show_tool_calls=True
     )

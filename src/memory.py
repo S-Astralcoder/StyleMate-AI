@@ -1,5 +1,5 @@
 import json
-from typing import Literal
+from typing import Literal, Any
 
 
 class AgentMemory:
@@ -12,11 +12,11 @@ class AgentMemory:
         self.memory.append({"role" : role, "content" : content})
 
     
-    def add_tool_call_memory(self, response):
-        self.memory.append(response)
+    def add_tool_call_memory(self, response): #pyright: ignore
+        self.memory.append(response) #pyright: ignore
 
-    def add_tool_call_result(self, id : str, result_content : str):
-        self.memory.append({"role" : "tool", "tool_call_id" : id, "content" : result_content})
+    def add_tool_call_result(self, id : str, result_content : dict[Any, Any] | str):
+        self.memory.append({"role" : "tool", "tool_call_id" : id, "content" : json.dumps(result_content)})
 
     def get_all_memory(self):
         return self.memory

@@ -53,7 +53,7 @@ class Agent:
                 continue
             if self.show_tool_calls:
                 self.console.print(f"\n[yellow]Tool {function_name} call resulted with response :\n{result}\n")
-            self.memory.add_tool_call_result(id=tool_call_id, result_content=result) #pyright: ignore
+            self.memory.add_tool_call_result(id=tool_call_id, result_content=result)
 
 
     def send_agent_prompt(self, message : str, max_iteration : int = 10):
