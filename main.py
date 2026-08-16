@@ -69,7 +69,7 @@ agent = Agent(
     agent_function_book=AgentFunctionBook([
         AgentFunction(name="get_user_data", function=get_user_data),
         AgentFunction(name="add_discovered_preference", function=add_discovered_preference),
-        AgentFunction(name="get_all_discovered_preference", function=get_all_discovered_preferences),
+        AgentFunction(name="get_all_discovered_preferences", function=get_all_discovered_preferences),
     ]),
     show_tool_calls=True
     )

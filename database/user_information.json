@@ -1,5 +1,5 @@
 {
-    "name" : "Suraj",
+    "name" : "Astral", 
     "gender" : "male",
     "preference" : {
         "like" : {
@@ -56,7 +56,7 @@
         },
         {
             "type" : "formal pant",
-            "color" : "gray white"
+            "color" : "blue strip"
         },
         {
             "type" : "jeans pant",
