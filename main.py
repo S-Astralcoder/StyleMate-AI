@@ -3,7 +3,7 @@ from src.agent import Agent
 from src.functions import AgentFunction, AgentFunctionBook
 from src.goal import Goal, GoalBook
 from src.memory import AgentMemory
-from src.tool.tool import add_discovered_preference, get_all_discovered_preferences, get_user_data
+from src.tool.tool import add_discovered_preference, get_all_discovered_preferences, get_user_data, update_memory, view_memory
 from src.tools import Tool
 from dotenv import load_dotenv
 from rich.prompt import Prompt
@@ -28,6 +28,7 @@ agent = Agent(
     1. You response should clear, concise and friendly.
     2. You should always recommend cloths that the user already have.
     3. Use colour theory to recommend colour combination.
+    4. Always make sure with source before responding
 
     Additional Instructions:
     1. When chatting with used. keep an eye for any additional preference the user has
@@ -36,6 +37,7 @@ agent = Agent(
     WHAT NOT TO DO:
     1. Recommend the cloths or color of cloths that user don't have
     2. Never be rude to users
+    
 
     You have been provided with tools to get information about user such as preference and what cloths they have. and also tools to update user preferences
     """),]),
@@ -64,12 +66,33 @@ agent = Agent(
             name="get_all_discovered_preferences",
             description="you to get all the information about new discovery made during interaction",
             parameters={}
-        )
+        ),
+        Tool(
+            name="update_memory",
+            description="Used to update the memory of the user",
+            parameters={
+                "type" : "object",
+            "properties" : {
+                "content" : {
+                "type" : "string",
+                "description" : "contents of memory to be saved in the memory"
+                },
+            }
+            }
+        ),
+        Tool(name="view_memory",
+        description="used to view the saved memory of user",
+        parameters={
+            
+        })
+        
     ]),
     agent_function_book=AgentFunctionBook([
         AgentFunction(name="get_user_data", function=get_user_data),
         AgentFunction(name="add_discovered_preference", function=add_discovered_preference),
         AgentFunction(name="get_all_discovered_preferences", function=get_all_discovered_preferences),
+        AgentFunction(name="update_memory", function=update_memory),
+        AgentFunction(name="view_memory", function=view_memory),
     ]),
     show_tool_calls=True
     )

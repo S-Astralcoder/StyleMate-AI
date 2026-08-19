@@ -23,6 +23,7 @@ class Agent:
         self.memory.add_memory("system", goals.get_goals())
     
     def _get_agent_response(self, message : str, tool_call_omit_message : bool = False):
+        # rich.print(self.memory.get_all_memory())
         if not tool_call_omit_message:
             self.memory.add_memory("user", message)
         try:
@@ -44,7 +45,7 @@ class Agent:
             function_name = tool_call.function.name
             arguments = json.loads(tool_call.function.arguments)
             if self.show_tool_calls:
-                self.console.print(f"\n[yellow]Tool {function_name} was called with arguments {json.dumps(arguments)}\n")
+                self.console.print(f"[yellow]Tool {function_name} was called with arguments {json.dumps(arguments)}\n")
             try:
                 result = self.agent_function_book.execute_function(function_name=function_name, arguments=arguments) #pyright: ignore
             except Exception as e:
@@ -52,7 +53,7 @@ class Agent:
                 self.memory.add_tool_call_result(id=tool_call_id, result_content=f"{e}")
                 continue
             if self.show_tool_calls:
-                self.console.print(f"\n[yellow]Tool {function_name} call resulted with response :\n{result}\n")
+                self.console.print(f"[yellow]Tool {function_name} call resulted with response :\n{result}\n")
             self.memory.add_tool_call_result(id=tool_call_id, result_content=result)
 
 
